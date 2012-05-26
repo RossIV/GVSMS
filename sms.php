@@ -1,15 +1,17 @@
- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<title><?php include("config.inc.php"); echo $company; ?> SMS System</title>
+<title>
+<?php include("config.inc.php"); echo $company; ?> SMS System</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
-<meta http-equiv="refresh" content="5;url=index.php" /> 
+<meta http-equiv="refresh" content="5;url=index.php" />
 <link rel="stylesheet" type="text/css" href="styles.css" />
-<script type="text/javascript" src="jquery.min.js"></script>
-<script type="text/javascript" src="maxlength.js"></script>
-<script type="text/javascript" src="doublesubmit.js"></script>
-<script type="text/javascript" src="hidediv.js"></script>
-<script type="text/javascript" src="prototype.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/maxlength.js"></script>
+<script type="text/javascript" src="js/doublesubmit.js"></script>
+<script type="text/javascript" src="js/hidediv.js"></script>
+<script type="text/javascript" src="js/prototype.js"></script>
+
 <script type="text/javascript">
 var updateresponse = "";
 </script>
@@ -17,12 +19,14 @@ var updateresponse = "";
 <body>
 <div align="center">
 <div id="container">
-<div id="header">
-  <h1><a href="index.php"><?php include("config.inc.php"); echo $company; ?> SMS Notification System</a></h1></div>
+  <div id="header">
+    <h1><a href="index.php">
+      <?php include("config.inc.php"); echo $company; ?>
+      SMS Notification System</a></h1>
+  </div>
   <div id="wrapper">
     <div id="content">
-
-<?PHP
+      <?PHP
 error_reporting(E_ALL);
 include("config.inc.php");
 $group=$_POST['group'];
@@ -41,21 +45,20 @@ $SQL = "SELECT * FROM numbers";
 $result = mysql_query($SQL);
 $num = mysql_num_rows($result);
 ?>
-<script type="text/javascript">
+      <script type="text/javascript">
 
         var num = '<?php echo $num; ?>';
         num = num - 1;
 
 </script>
-<?php
+      <?php
 while ($i < $num) {
         $phonenumber=mysql_result($result,$i,"number");
 
         $name=mysql_result($result,$i,"name");
 
         ?>
-
-<script type="text/javascript">
+      <script type="text/javascript">
         new Ajax.Request('sms2.php',
           {
             method:'get',
@@ -75,7 +78,7 @@ while ($i < $num) {
             onFailure: function(){ alert('Something went wrong...') }
           });
         </script>
-        <?php
+      <?php
         $i++;}
 
 print "The following message is being sent to $group<br>\"$message\"\n";
@@ -103,20 +106,19 @@ $SQL = "SELECT * FROM numbers WHERE grp = '$group'";
 $result = mysql_query($SQL);
 $num = mysql_num_rows($result);
 ?>
-<script type="text/javascript">
+      <script type="text/javascript">
 
         var num = '<?php echo $num; ?>';
         num = num - 1;
 
 </script>
-<?php
+      <?php
 while ($i < $num) {
         $phonenumber=mysql_result($result,$i,"number");
         $name=mysql_result($result,$i,"name");
 
         ?>
-
-<script type="text/javascript">
+      <script type="text/javascript">
         new Ajax.Request('sms2.php',
           {
             method:'get',
@@ -136,7 +138,7 @@ while ($i < $num) {
             onFailure: function(){ alert('Something went wrong...') }
           });
         </script>
-        <?php
+      <?php
         $i++;}
 
 print "The following message is being sent to $group<br>\"$message\"\n";
@@ -147,23 +149,21 @@ mysql_close();
 
 
 ?>
-
-<div id="updateresponsediv"></div>
- </div>
+      <div id="updateresponsediv"></div>
+    </div>
   </div>
   <div id="navigation">
     <p><strong></strong></p>
     <ul>
       <li><a href="index.php"><SPAN style="BACKGROUND-COLOR: #ffff00">Compose Message</span></a></li>
       <li><a href="dbview.php">View Database</a></li>
-	  <li><a href="dbadd.php">Add Member</a></li>
-	  <li><a href="dbdrop.php">Drop Member</a></li>
+      <li><a href="dbadd.php">Add Member</a></li>
+      <li><a href="dbdrop.php">Drop Member</a></li>
     </ul>
   </div>
-  <div id="extra">
-  </div>
+  <div id="extra"> </div>
   <div id="footer">
-    <p>The Google Voice SMS Notification System was originally written by Ross Lindsay, and is now maintained by the Project Lead Developers, Michael Heckman and Ross Lindsay. System/Module version<a href="http://www.pbxinaflash.com/community/index.php?threads/google-voice-sms-script.10014/">1.5</a></p>
+    <p>The Google Voice SMS Notification System was originally written by Ross Lindsay, and is now maintained by the Project Lead Developers, Daniel Dugger and Ross Lindsay. Module version<a href="http://www.pbxinaflash.com/forum/showthread.php?t=10014">1.5</a></p>
   </div>
 </div>
 </body>
