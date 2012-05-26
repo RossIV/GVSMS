@@ -67,17 +67,15 @@ $getUser = mysql_query($getUser_sql);
     </div>
   </div>
   <div id="navigation">
-    <p><strong></strong></p>
-    <ul>
+<ul>
       <li><a href="index.php"><SPAN style="BACKGROUND-COLOR: #ffff00">Compose Message</span></a></li>
       <li><a href="dbview.php">View Database</a></li>
       <li><a href="dbadd.php">Add Member</a></li>
       <li><a href="dbdrop.php">Drop Member</a></li>
     </ul>
   </div>
-  <div id="extra"> </div>
-  <div id="footer">
-    <p>The Google Voice SMS Notification System was originally written by Ross Lindsay, and is now maintained by the Project Lead Developers, Daniel Dugger and Ross Lindsay. Module version<a href="http://www.pbxinaflash.com/forum/showthread.php?t=10014">1.5</a></p>
+<div id="footer">
+    <p>The Google Voice SMS Notification System was originally written by Ross Lindsay, and is now maintained by the Project Lead Developers, Daniel Dugger and Ross Lindsay. Module version<a href="https://github.com/RossIV/GVSMS">1.5</a></p>
   </div>
 </div>
 </body>

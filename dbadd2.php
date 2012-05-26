@@ -1,21 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<META HTTP-EQUIV="refresh" CONTENT="5;url=dbadd.php">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Refresh" content="5;url=dbadd.php" />
 <title>
-<?php include("config.inc.php"); echo $company; ?> SMS System | Drop Member</title>
+<?php include("config.inc.php"); echo $company; ?>
+SMS System | Drop Member</title>
 <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-<div id="container" />
 <div id="header">
   <h1><a href="index.php">
     <?php include("config.inc.php"); echo $company; ?>
     SMS Notification System</a></h1>
 </div>
-<div id="wrapper" />
-<div id="content" />
 <?php
 include("config.inc.php");
 $dbpass=$_POST['dbpass'];
@@ -76,9 +74,8 @@ mysql_close($con)
     <li><a href="dbdrop.php">Drop Member</a></li>
   </ul>
 </div>
-<div id="extra"> </div>
 <div id="footer">
-    <p>The Google Voice SMS Notification System was originally written by Ross Lindsay, and is now maintained by the Project Lead Developers, Daniel Dugger and Ross Lindsay. Module version<a href="http://www.pbxinaflash.com/forum/showthread.php?t=10014">1.5</a></p>
+  <p>The Google Voice SMS Notification System was originally written by Ross Lindsay, and is now maintained by the Project Lead Developers, Daniel Dugger and Ross Lindsay. Module version<a href="https://github.com/RossIV/GVSMS">1.5</a></p>
 </div>
 </div>
 </div>

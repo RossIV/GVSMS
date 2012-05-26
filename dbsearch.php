@@ -2,10 +2,10 @@
 <html>
 <head>
 <title>
-<?php include("config.inc.php"); echo $company; ?> SMS System | Search Database</title>
+<?php include("config.inc.php"); echo $company; ?>
+SMS System | Search Database</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
 <link rel="stylesheet" type="text/css" href="styles.css" />
-
 </head>
 <body>
 <div id="container">
@@ -29,8 +29,7 @@
               <input type="submit" name="search" value="Search" /></td>
         </table>
       </form>
-      <p></p>
-      <?php
+<?php
 
 $find=$_POST['find'];
 
@@ -77,17 +76,15 @@ $i++;
     </div>
   </div>
   <div id="navigation">
-    <p><strong></strong></p>
-    <ul>
+<ul>
       <li><a href="index.php">Compose Message</a></li>
       <li><a href="dbview.php"><SPAN style="BACKGROUND-COLOR: #ffff00">View Database</span></a></li>
       <li><a href="dbadd.php">Add Member</a></li>
       <li><a href="dbdrop.php">Drop Member</a></li>
     </ul>
   </div>
-  <div id="extra"> </div>
-  <div id="footer">
-    <p>The Google Voice SMS Notification System was originally written by Ross Lindsay, and is now maintained by the Project Lead Developers, Daniel Dugger and Ross Lindsay. Module version<a href="http://www.pbxinaflash.com/forum/showthread.php?t=10014">1.5</a></p>
+<div id="footer">
+    <p>The Google Voice SMS Notification System was originally written by Ross Lindsay, and is now maintained by the Project Lead Developers, Daniel Dugger and Ross Lindsay. Module version<a href="https://github.com/RossIV/GVSMS">1.5</a></p>
   </div>
 </div>
 </body>

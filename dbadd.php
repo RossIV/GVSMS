@@ -33,8 +33,8 @@ $getUser	 = mysql_query($getUser_sql);
           <tr>
             <th width="244" align="right" class="body-text">Group to whom member should be added:</th>
             <td width="244" class="body-text"><p>
-                <select name="group" onChange="showDiv(this.value);">
-                  <option selected value="">Select</option>
+                <select name="group" onchange="showDiv(this.value);">
+                  <option selected="selected" value="">Select</option>
                   <option value="manual">Create New Group</option>
                   <?php
 while ($row = mysql_fetch_array($getUser)) {
@@ -66,7 +66,7 @@ while ($row = mysql_fetch_array($getUser)) {
             <td colspan="2" align="center"><input type="submit" value="Add Number" name="action" /></td>
           </tr>
         </table>
-        <br>
+        <br />
       </form>
     </div>
     <div id="navigation">
@@ -77,9 +77,8 @@ while ($row = mysql_fetch_array($getUser)) {
         <li><a href="dbdrop.php">Drop Member</a></li>
       </ul>
     </div>
-    <div id="extra"> </div>
-    <div id="footer">
-    <p>The Google Voice SMS Notification System was originally written by Ross Lindsay, and is now maintained by the Project Lead Developers, Daniel Dugger and Ross Lindsay. Module version<a href="http://www.pbxinaflash.com/forum/showthread.php?t=10014">1.5</a></p>
+<div id="footer">
+      <p>The Google Voice SMS Notification System was originally written by Ross Lindsay, and is now maintained by the Project Lead Developers, Daniel Dugger and Ross Lindsay. Module version<a href="https://github.com/RossIV/GVSMS">1.5</a></p>
     </div>
   </div>
 </div>
