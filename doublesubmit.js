@@ -1,4 +1,3 @@
-//Script adapted from Javascriptkit.com
 var formerrormsg="Please wait for the first message(s) to send before sending more."
 
 function checksubmit(submitbtn){
