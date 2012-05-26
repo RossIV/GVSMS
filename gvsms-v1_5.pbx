@@ -1,0 +1,218 @@
+#!/bin/bash
+
+VERSION=1.5
+DLVERSION=1_5
+
+#######################################################################
+#  GVoice SMS Notification System and Module Installer
+#  for PBX in a Flash
+#
+#   Author: Ross Lindsay
+#	Email: Ross@RossLindsay.com
+#  Company: Lindsay & Lindsay, LLC
+#  Website: www.rosslindsay.com
+#
+#  Disclaimer:  
+#   This product is solely a private production of the above/below  
+#   named authors, and is neither endorsed nor supported by Lindsay
+#   & Lindsay, LLC. Although this product has been thoroughly tested,
+#   it is distributed AS IS, and the authors assume no liability for
+#   any damages this script may cause to your system.  The authors 
+#   have provided full source code and encourage you to review the
+#   source code to determine any effects it may have on your system.
+#
+#   (c) Copyright 2011, Ross Lindsay, Lindsay & Lindsay, LLC.  
+#	   All Rights Reserved.
+#
+#  Special Thanks to Michael Heckman from Twilight Zone Productions
+#  AKA RTOMikey for his continual efforts to support and improve this 
+#  module and system.
+#
+#
+#
+########################################################################
+
+clear
+echo " "
+echo "Welcome to the GVoice SMS Notification System Installer v$VERSION!"
+echo ""
+echo "NO WARRANTIES EXPRESS OR IMPLIED ARE PROVIDED WITH THIS SOFTWARE"
+echo "INCLUDING THE IMPLIED WARRANTIES OF FITNESS FOR USE AND MERCHANTABILITY."
+echo "YOU AGREE TO ASSUME ALL RISK AND TO DETERMINE SUITABILITY TO MEET YOUR NEEDS."
+echo " " 
+echo "NEVER RUN THIS INSTALLER MORE THAN ONCE PER MACHINE"
+read -p "To proceed with installation at your own risk, press Enter. Otherwise Ctrl-C."
+
+clear
+
+echo "Installation beginning...."
+echo " "
+if [-e "/etc/pbx/.version"]; then
+   piaf = 1
+fi
+echo " "
+echo "Checking for GVoice capability."
+if [ -e "/usr/bin/gvoice"]; then
+   echo "GVoice Support Detected. Continuing with installer"
+else
+   echo "No GVoice support detected."
+   echo "This system requires the 'gvoice' utility and other dependencies to be installed."
+   read -p "If you want to install the required dependencies, press enter. Otherwise CTRL-C to exit."
+   echo "Now installing the required dependencies for GVoice."
+   apt-get install python python-simplejson python-setuptools
+   wget http://pygooglevoice.googlecode.com/files/pygooglevoice-0.5.tar.gz
+   tar -zxvf pygooglevoice-0.5.tar.gz
+   cd pygooglevoice-0.5/googlevoice
+   cp gvoice.txt /usr/bin/gvoice
+   chmod +x /usr/bin/gvoice
+   chmod 0755 /usr/bin/gvoice
+   easy_install simplejson
+   easy_install -U pygooglevoice
+echo -n "GVoice dependencies installed, now continuing with install."
+echo -n "Patching GVoice Authentication bug..."
+sed -i 's|https://www.google.com/accounts/ServiceLoginAuth?service=grandcentral|https://accounts.google.com/ServiceLogin?service=grandcentral\&continue=https://www.google.com/voice|' /usr/lib/python2.4/site-packages/googlevoice/settings.py
+echo -n "Patch completed...Continuing with normal install..."
+fi
+
+echo -n "Checking to see if GVoice SMS Notification System was previously installed..."
+if [ -e "/var/www/html/gvsms/index.php" || -a -r "/var/www/html/gvsms/.version" ]; then
+   echo "Yes."
+   echo ""
+   echo "I have detected a previous installation of GVoice SMS Notification System."
+   echo "To prevent any data loss, this script will now exit."
+   exit
+else
+    echo "No."
+    echo "I have not detected a previous installation of GVoice SMS Notification System."
+    read -p "To proceed with installation at your own risk, press Enter. Otherwise Ctrl-C."
+fi
+
+cd /
+echo -n "Downloading latest version v$VERSION ..."
+wget http://dev.rosslindsay.com/pbx/gvsms/gvsms-v$DLVERSION.tar.gz &> /dev/null
+RETVAL=$?
+if [ $RETVAL != 0 ]
+   then echo "[ERROR]"
+   echo ""
+   echo "Oops! I can't download the GVoice SMS Notification System Package. Is the internet down?"
+   echo ""
+   echo "Error: $RETVAL"
+   echo ""
+   exit
+fi
+echo "Latest Version Downloaded!"
+echo " "
+
+echo -n "Installing GVoice SMS Notification System..."
+tar -zxvf /gvsms-v$DLVERSION.tar.gz -C / &>/dev/null
+RETVAL=$?
+if [ $RETVAL != 0 ]
+   then echo "Nope."
+   echo ""
+   echo "I'm unable to install the GVoice SMS Notification System Package... Did you delete the package?"
+   echo ""
+   echo "Error: $RETVAL"
+   echo ""
+   exit
+fi
+yum -y install httpd php5 mysql-server phpmyadmin
+echo "Installed!"
+
+echo "Setting Permissions..."
+cd /var/www/html/gvsms
+chown asterisk:asterisk *
+chmod +x sms.php
+chmod +x dbdrop.php
+chmod +x dbadd.php
+chmod +x dbsearch.php
+chmod +x dbview.php
+echo "Permissions set!"
+echo " "
+
+echo "Setting up database..."
+echo ""
+echo "Please enter your MySQL Root User password, followed by enter."
+echo "If you are on PBX in a Flash, the default is 'passw0rd'.
+while [[ "$yn" != "Yes" && "$yn" != "Y" && "$yn" != "y" && "$yn" != "yes" ]]; do
+    read -r userdbpass
+    echo "You have entered '$userdbpass' as your current MySQL Root User password."
+    echo "Is this correct? (Yes or No)"
+    read yn
+done
+mysql -uroot -p$userdbpass < /var/www/html/gvsms/gvsms-install.sql
+echo "Database Created!" 
+
+if [ "$piaf" == "1"]; then
+echo "Adding icon to Kennonsoft Menu"
+echo " "
+cd /var/www/html/welcome
+wget http://dev.rosslindsay.com/pbx/gvsms/ico_sms.png
+echo "Backing up .htindex.cfg to .htindex.cfg.GVSMSBAK"
+cp .htindex.cfg .htindex.cfg.GVSMSBAK
+echo "3,gvsms,./gvsms,GVoice SMS Notifications,ico_sms.png" >> .htindex.cfg
+echo " "
+fi
+
+echo "Now restarating Apache/httpd"
+service httpd restart
+echo " "
+
+echo "Removing extraneous files"
+cd /
+rm gvsms-v$DLVERSION.tar.gz
+rm /var/www/html/gvsms/gvsms-install.sql
+echo " "
+clear
+
+echo "Gathering pertinent information...."
+echo "Please enter a password for the 'gvsmsdd' MySQL User and press enter:"
+echo "This will NOT change your MySQL root user password."
+echo "This will be used to add/delete entries in the system."
+while [[ "$yn" != "Yes" && "$yn" != "Y" && "$yn" != "y" && "$yn" != "yes" ]]; do
+    read -r installdbpass
+    echo "You have chosen '$installdbpass' as your new database password."
+    echo "Is this correct? (Yes or No)"
+    read yn
+done
+mysql -uroot -p$userdbpass -Be "SET PASSWORD FOR 'gvsmsdd'@'localhost' = PASSWORD( '$installdbpass' )"
+echo "Database Password Set! Remember it!" 
+echo " "
+echo " "
+echo "Please enter the email address that is associated with your GVoice account:"
+while [[ "$yn" != "Yes" && "$yn" != "Y" && "$yn" != "y" && "$yn" != "yes" ]]; do
+    read -r gvemail
+    echo "You have entered '$gvemail' as your email address."
+    echo "Is this correct? (Yes or No)"
+    read yn
+done
+echo " "
+echo "Please enter the password that is associated with your GVoice account:"
+while [[ "$yn" != "Yes" && "$yn" != "Y" && "$yn" != "y" && "$yn" != "yes" ]]; do
+    read -r gvpass
+    echo "You have entered '$gvpass' as your email password."
+    echo "Is this correct? (Yes or No)"
+    read yn
+done
+echo " "
+echo "Setting values..."
+cd /var/www/html/gvsms
+echo "<?php" >> config.inc.php
+echo "\$username = 'gvsms';" >> config.inc.php
+echo "\$password = '$installdbpass';" >> config.inc.php
+echo "\$database = 'gvsms';" >> config.inc.php
+echo "\$server = 'localhost';" >> config.inc.php
+echo "\$gvoiceuser = '$gvemail';" >> config.inc.php
+echo "\$gvoicepass = '$gvpass';" >> config.inc.php
+echo "?>" >> config.inc.php
+echo "Values set!"
+
+echo "Installation Completed! To access the GVoice SMS Notification System,"
+echo "go to http://IPorFQDN/gvsms in a web browser on a LAN computer."
+echo " "
+echo "If you have any questions, please post on the PIAF Forums."
+echo "Thanks and Enjoy!"
+if [ "$piaf" != 1]; then
+echo "You do not appear to be running PBX in a Flash."
+echo "PBX in a Flash is a free, lean, mean, open-source Asterisk machine on steroids."
+echo "For more information about PBX in a Flash, visit PBXinaFlash.com"
+fi
