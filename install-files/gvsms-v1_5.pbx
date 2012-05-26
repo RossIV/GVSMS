@@ -8,7 +8,7 @@ DLVERSION=1_5
 #  for PBX in a Flash
 #
 #   Author: Ross Lindsay
-#	Email: Ross@RossLindsay.com
+#    Email: Ross@RossLindsay.com
 #  Company: Lindsay & Lindsay, LLC
 #  Website: www.rosslindsay.com
 #
@@ -21,13 +21,15 @@ DLVERSION=1_5
 #   have provided full source code and encourage you to review the
 #   source code to determine any effects it may have on your system.
 #
-#   (c) Copyright 2011, Ross Lindsay, Lindsay & Lindsay, LLC.  
+#   (c) Copyright 2012, Ross Lindsay, Lindsay & Lindsay, LLC.  
 #	   All Rights Reserved.
 #
 #  Special Thanks to Michael Heckman from Twilight Zone Productions
-#  AKA RTOMikey for his continual efforts to support and improve this 
+#  AKA RTOMikey for his efforts to support and improve this 
 #  module and system.
 #
+#  Special Thanks also to Daniel Dugger from Florida Computer, Inc.
+#  for his assistance with further development of the module and system.
 #
 #
 ########################################################################
