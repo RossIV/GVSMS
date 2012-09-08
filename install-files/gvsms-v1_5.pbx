@@ -49,12 +49,12 @@ clear
 
 echo "Installation beginning...."
 echo " "
-if [-e "/etc/pbx/.version"]; then
-   piaf = 1
+if [ -f "/etc/pbx/.version" ]; then
+   piaf=1
 fi
 echo " "
 echo "Checking for GVoice capability."
-if [ -e "/usr/bin/gvoice"]; then
+if [ -f "/usr/bin/gvoice" ]; then
    echo "GVoice Support Detected. Continuing with installer"
 else
    echo "No GVoice support detected."
@@ -77,16 +77,16 @@ echo -n "Patch completed...Continuing with normal install..."
 fi
 
 echo -n "Checking to see if GVoice SMS Notification System was previously installed..."
-if [ -e "/var/www/html/gvsms/index.php" || -a -r "/var/www/html/gvsms/.version" ]; then
-   echo "Yes."
-   echo ""
-   echo "I have detected a previous installation of GVoice SMS Notification System."
+if [ -f "/var/www/html/gvsms/index.php" ]; then
+   echo "Yes."
+   echo ""
+   echo "I have detected a previous installation of GVoice SMS Notification System."
    echo "To prevent any data loss, this script will now exit."
    exit
 else
-    echo "No."
-    echo "I have not detected a previous installation of GVoice SMS Notification System."
-    read -p "To proceed with installation at your own risk, press Enter. Otherwise Ctrl-C."
+    echo "No."
+    echo "I have not detected a previous installation of GVoice SMS Notification System."
+    read -p "To proceed with installation at your own risk, press Enter. Otherwise Ctrl-C."
 fi
 
 cd /
@@ -136,10 +136,10 @@ echo ""
 echo "Please enter your MySQL Root User password, followed by enter."
 echo "If you are on PBX in a Flash, the default is 'passw0rd'.
 while [[ "$yn" != "Yes" && "$yn" != "Y" && "$yn" != "y" && "$yn" != "yes" ]]; do
-    read -r userdbpass
-    echo "You have entered '$userdbpass' as your current MySQL Root User password."
-    echo "Is this correct? (Yes or No)"
-    read yn
+    read -r userdbpass
+    echo "You have entered '$userdbpass' as your current MySQL Root User password."
+    echo "Is this correct? (Yes or No)"
+    read yn
 done
 mysql -uroot -p$userdbpass < /var/www/html/gvsms/gvsms-install.sql
 echo "Database Created!" 
@@ -171,10 +171,10 @@ echo "Please enter a password for the 'gvsmsdd' MySQL User and press enter:"
 echo "This will NOT change your MySQL root user password."
 echo "This will be used to add/delete entries in the system."
 while [[ "$yn" != "Yes" && "$yn" != "Y" && "$yn" != "y" && "$yn" != "yes" ]]; do
-    read -r installdbpass
-    echo "You have chosen '$installdbpass' as your new database password."
-    echo "Is this correct? (Yes or No)"
-    read yn
+    read -r installdbpass
+    echo "You have chosen '$installdbpass' as your new database password."
+    echo "Is this correct? (Yes or No)"
+    read yn
 done
 mysql -uroot -p$userdbpass -Be "SET PASSWORD FOR 'gvsmsdd'@'localhost' = PASSWORD( '$installdbpass' )"
 echo "Database Password Set! Remember it!" 
@@ -182,18 +182,18 @@ echo " "
 echo " "
 echo "Please enter the email address that is associated with your GVoice account:"
 while [[ "$yn" != "Yes" && "$yn" != "Y" && "$yn" != "y" && "$yn" != "yes" ]]; do
-    read -r gvemail
-    echo "You have entered '$gvemail' as your email address."
-    echo "Is this correct? (Yes or No)"
-    read yn
+    read -r gvemail
+    echo "You have entered '$gvemail' as your email address."
+    echo "Is this correct? (Yes or No)"
+    read yn
 done
 echo " "
 echo "Please enter the password that is associated with your GVoice account:"
 while [[ "$yn" != "Yes" && "$yn" != "Y" && "$yn" != "y" && "$yn" != "yes" ]]; do
-    read -r gvpass
-    echo "You have entered '$gvpass' as your email password."
-    echo "Is this correct? (Yes or No)"
-    read yn
+    read -r gvpass
+    echo "You have entered '$gvpass' as your email password."
+    echo "Is this correct? (Yes or No)"
+    read yn
 done
 echo " "
 echo "Setting values..."
