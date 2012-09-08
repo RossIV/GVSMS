@@ -69,6 +69,7 @@ $i++;
       <li><a href="dbview.php"><span style="background-color: #ffff00">View Database</span></a></li>
       <li><a href="dbadd.php">Add Member</a></li>
       <li><a href="dbdrop.php">Drop Member</a></li>
+      <li><a href="ty/">Switch to TeleYapper Database</a></li>
     </ul>
   </div>
 <div id="footer">

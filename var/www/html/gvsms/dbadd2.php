@@ -75,6 +75,7 @@ mysql_close($con)
     <li><a href="dbview.php">View Database</a></li>
     <li><a href="dbadd.php"><span style="background-color: #ffff00">Add Member</span></a></li>
     <li><a href="dbdrop.php">Drop Member</a></li>
+    <li><a href="ty/">Switch to TeleYapper Database</a></li>
   </ul>
 </div>
 <div id="footer">
