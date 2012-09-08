@@ -202,6 +202,7 @@ echo "<?php" >> config.inc.php
 echo "\$username = 'gvsms';" >> config.inc.php
 echo "\$password = '$installdbpass';" >> config.inc.php
 echo "\$database = 'gvsms';" >> config.inc.php
+echo "\$tydatabase = 'teleyapper';" >> config.inc.php
 echo "\$server = 'localhost';" >> config.inc.php
 echo "\$gvoiceuser = '$gvemail';" >> config.inc.php
 echo "\$gvoicepass = '$gvpass';" >> config.inc.php
