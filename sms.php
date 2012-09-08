@@ -5,7 +5,7 @@
 <?php include("config.inc.php"); echo $company; ?>
 SMS System</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
-<meta http-equiv="refresh" content="5;url=index.php" />
+<meta http-equiv="refresh" content="10;url=index.php" />
 <link rel="stylesheet" type="text/css" href="styles.css" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/maxlength.js"></script>
@@ -149,17 +149,20 @@ mysql_close();
 
 
 ?>
+      <div id="updateresponsediv"></div>
     </div>
   </div>
   <div id="navigation">
-<ul>
+    <p><strong></strong></p>
+    <ul>
       <li><a href="index.php"><SPAN style="BACKGROUND-COLOR: #ffff00">Compose Message</span></a></li>
       <li><a href="dbview.php">View Database</a></li>
       <li><a href="dbadd.php">Add Member</a></li>
       <li><a href="dbdrop.php">Drop Member</a></li>
     </ul>
   </div>
-<div id="footer">
+  <div id="extra"> </div>
+  <div id="footer">
     <p>The Google Voice SMS Notification System was originally written by Ross Lindsay, and is now maintained by the Project Lead Developers, Daniel Dugger and Ross Lindsay. Module version<a href="https://github.com/RossIV/GVSMS">1.5</a></p>
   </div>
 </div>

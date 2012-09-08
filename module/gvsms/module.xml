@@ -1,7 +1,7 @@
 <module>
 <rawname>gvsms</rawname>
 <name>GVoice SMS System</name>
-<version>1.0</version>
+<version>1.5</version>
 <description>
 	Allows sending SMS messages via Google Voice
 	Send messages to a MySQL Group or Manual Number
@@ -12,11 +12,15 @@
 <menuitems>
 <gvsms>GVoice SMS System</gvsms>
 </menuitems>
-<depends>
-	<engine>asterisk 1.8</engine>
-</depends>
 <info>http://pbxinaflash.com/forum/showthread.php?t=10014</info>
 <changelog>
+	*1.5* New home at GitHub
+		  Added MySQL dynamic drop down selection
+		  Dynamic Page Updating
+		  Character Counter
+		  Duplicate Page Submit Prevention
+		  Code Restructuring
+		  More JavaScript and JQuery
 	*1.0* Now has FreePBX Module
 	      Changed to PHP
 	      Added MySQL Integration

@@ -2,8 +2,7 @@
 <html>
 <head>
 <title>
-<?php include("config.inc.php"); echo $company; ?>
-&nbsp;SMS System</title>
+<?php include("config.inc.php"); echo $company; ?>&nbsp;SMS System</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
 <link rel="stylesheet" type="text/css" href="styles.css" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -49,7 +48,8 @@ $getUser = mysql_query($getUser_sql);
               </p></td>
           <tr id="manual" class="hiddenDiv">
             <th align="left">Manual Number</th>
-            <td><input type="text" name="number" title="Enter number with area code, but no +1."></td>
+            <td><input type="text" name="number" title="Enter number with area code, but no +1."> 
+            (+1 Not Necessary)</td>
           </tr>
           <tr>
             <th align=left valign="middle">Message</th>

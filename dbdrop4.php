@@ -9,12 +9,15 @@ SMS System | Drop Member</title>
 <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-<div id="header">
-  <h1><a href="index.php">
-    <?php include("config.inc.php"); echo $company; ?>
-    SMS Notification System</a></h1>
-</div>
-<?php
+<div id="container">
+  <div id="header">
+    <h1><a href="index.php">
+      <?php include("config.inc.php"); echo $company; ?>
+      SMS Notification System</a></h1>
+  </div>
+  <div id="wrapper">
+    <div id="content">
+      <?php
 include("config.inc.php");
 $dbpassword=$_POST['Value1'];
 $name=$_POST['Value3'];
@@ -41,22 +44,22 @@ echo "DELETED $name with a phone number of $number from $group<br>\n";
 
 mysql_close($con)
 ?>
-</div>
-<div id="navigation">
-  <ul>
-    <li><a href="index.php">Compose Message</a></li>
-    <li><a href="dbview.php">View Database</a></li>
-    <li><a href="dbadd.php">Add Member</a></li>
-    <li><a href="dbdrop.php"><span style="BACKGROUND-COLOR: #ffff00">Drop Member</span></a></li>
-  </ul>
-</div>
-<div id="extra">
-  <p><strong><font color="red">WARNING!</font></strong> All changes made using this tool are <i>final </i>and can <i>not</i> be undone.</p>
-</div>
-<div id="footer">
-  <p>The Google Voice SMS Notification System was originally written by Ross Lindsay, and is now maintained by the Project Lead Developers, Daniel Dugger and Ross Lindsay. Module version<a href="https://github.com/RossIV/GVSMS">1.5</a></p>
-</div>
-</div>
+    </div>
+    <div id="navigation">
+      <ul>
+        <li><a href="index.php">Compose Message</a></li>
+        <li><a href="dbview.php">View Database</a></li>
+        <li><a href="dbadd.php">Add Member</a></li>
+        <li><a href="dbdrop.php"><span style="BACKGROUND-COLOR: #ffff00">Drop Member</span></a></li>
+      </ul>
+    </div>
+    <div id="extra">
+      <p><strong><font color="red">WARNING!</font></strong> All changes made using this tool are <i>final </i>and can <i>not</i> be undone.</p>
+    </div>
+    <div id="footer">
+      <p>The Google Voice SMS Notification System was originally written by Ross Lindsay, and is now maintained by the Project Lead Developers, Daniel Dugger and Ross Lindsay. Module version<a href="https://github.com/RossIV/GVSMS">1.5</a></p>
+    </div>
+  </div>
 </div>
 </body>
 </html>

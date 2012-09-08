@@ -9,12 +9,15 @@ SMS System | Drop Member</title>
 <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-<div id="header">
-  <h1><a href="index.php">
-    <?php include("config.inc.php"); echo $company; ?>
-    SMS Notification System</a></h1>
-</div>
-<?php
+<div id="container">
+  <div id="header">
+    <h1><a href="index.php">
+      <?php include("config.inc.php"); echo $company; ?>
+      SMS Notification System</a></h1>
+  </div>
+  <div id="wrapper">
+  <div id="content">
+  <?php
 include("config.inc.php");
 $dbpass=$_POST['dbpass'];
 $name=$_POST['name'];
