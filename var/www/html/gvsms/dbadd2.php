@@ -25,7 +25,6 @@ $group=$_POST['group'];
 $number=$_POST['number'];
 $groupadd=$_POST['groupadd'];
 
-
 $con = mysql_connect("localhost","$username","$dbpass");
 if (!$con)
   {
@@ -64,7 +63,6 @@ echo "1 record added<br>\n";
 echo "The Following Modifications have been made:<br>\n";
 echo "ADDED $name with the phone number $number to $group!<br>\n";
 }
-
 
 mysql_close($con)
 ?>

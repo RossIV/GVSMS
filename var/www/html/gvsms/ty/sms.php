@@ -147,7 +147,6 @@ mysql_close();
 
 }
 
-
 ?>
       <div id="updateresponsediv"></div>
     </div>

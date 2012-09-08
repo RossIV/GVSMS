@@ -12,7 +12,7 @@
 </head>
 <body>
 <div align="center">
-<?PHP
+<?php
 error_reporting(E_ALL);
 include("config.inc.php");
 $i=0;

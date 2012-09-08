@@ -41,7 +41,6 @@ echo "1 record deleted<br>\n";
 echo "The Details of your modifications are:<br>\n";
 echo "DELETED $name with a phone number of $number from $group<br>\n";
 
-
 mysql_close($con)
 ?>
     </div>

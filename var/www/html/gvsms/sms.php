@@ -25,7 +25,7 @@ var updateresponse = "";
   </div>
   <div id="wrapper">
     <div id="content">
-      <?PHP
+      <?php
 error_reporting(E_ALL);
 include("config.inc.php");
 $group=$_POST['group'];

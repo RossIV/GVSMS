@@ -11,7 +11,6 @@ if ($wereon == $total - 1) {
     
 }
 
-
 $runcommand = '/usr/bin/gvoice -e ' . $gvoiceuser . ' -p ' . $gvoicepass . ' send_sms ' . $phonenumber . " " . $message . ' &';
 exec($runcommand);
 if ($done) {

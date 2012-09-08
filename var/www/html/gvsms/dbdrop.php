@@ -8,7 +8,7 @@ SMS System | Drop Member</title>
 <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-<?PHP
+<?php
 error_reporting(E_ALL);
 include("config.inc.php");
 $i=0;

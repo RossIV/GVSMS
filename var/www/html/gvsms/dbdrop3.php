@@ -16,7 +16,7 @@ SMS System | Drop Member</title>
   </div>
   <div id="wrapper">
     <div id="content">
-      <?PHP
+      <?php
 error_reporting(E_ALL);
 include("config.inc.php");
 $i=0;
