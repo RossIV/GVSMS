@@ -5,7 +5,7 @@
 <?php include("config.inc.php"); echo $company; ?>
 SMS System</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
-<meta http-equiv="refresh" content="10;url=index.php" />
+<meta http-equiv="refresh" content="30;url=index.php" />
 <link rel="stylesheet" type="text/css" href="styles.css" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/maxlength.js"></script>
@@ -21,8 +21,7 @@ var updateresponse = "";
 <div id="container">
   <div id="header">
     <h1><a href="index.php">
-      <?php include("config.inc.php"); echo $company; ?>
-      SMS Notification System</a></h1>
+      <?php include("config.inc.php"); echo $company; ?> SMS Notification System</a></h1>
   </div>
   <div id="wrapper">
     <div id="content">
